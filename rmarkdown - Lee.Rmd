@@ -1,0 +1,108 @@
+---
+title: "BST 464 HW4 - Charles C. Lee"
+output: html_document
+---
+
+## Introduction
+The title of my project is called: **URMC MS in Medical Statistics - Who Is On Time?**
+
+The main goal of the project is to observe when professors arrive to class and take off from lectures on a daily basis.
+
+## Methods
+
+For my Fall 2016 semester, BST 411, 464, and 494, the University provides exact time frames for each course. The times may have been modified slightly by the instructors; nevertheless, it is the timeframe listed on the syllabus created by the instructors.
+
+BST 411 : 1:45 pm - 3:15 pm
+BST 464 : 11 am - 12:30 pm
+BST 494 : 11 am - 12:30 pm
+
+I will be arriving to each class 10 minutes earlier than the designated start time, starting 9/13/16, and I will observe how early or late the professor arrives or leaves the classroom, in minutes. **"Time of Arrival"** will be defined as the time when the professor enters the classroom. Early arrival will be designated with a minus (-) sign and late arrival will be designated with a plus sign (+). The numerical value entered next to the plus or minus sign will indicate the time difference from the designated class start time. The value "0" means that the professor arrived exactly at the scheduled start time. 
+
+On the other hand, **"Time of Departure"** will be defined as the time when the professor announces to the class that class is over. Early departure will be designated with a minus (-) sign and late departure will be designated with a plus sign (+). The numerical value entered next to the plus or minus sign will indicate the time difference from the designated class end time. The value "0" means that the professor ended class exactly at the scheduled end time.
+
+My assumption is that the professors will not be in the classroom 10 minutes (or more) before the start time - if he or she does arrive 10 minutes before start time, I will enter '-10' for "Time of Arrival."
+
+
+*Note: professors change in BST494.*
+
+## Limitations
+(1) Midterm and Final times will not be recorded.
+(2) Due to personal reasons, I missed several classes and those data points are missing.
+
+
+
+## Preliminary Descriptive Statistics
+
+
+```{r, echo=FALSE}
+
+## Loading data into R
+
+d411 <- read.csv("C:\\Users\\Charles C. Lee\\Desktop\\Graduate Programs\\Masters in Medical Statistics\\Program\\Fall 2016\\BST 494\\Homework\\R\\HW 4\\Data\\BST411Times.csv", sep=",", header=TRUE, skip = 1, stringsAsFactors = FALSE) #16 obs
+d464 <- read.csv("C:\\Users\\Charles C. Lee\\Desktop\\Graduate Programs\\Masters in Medical Statistics\\Program\\Fall 2016\\BST 494\\Homework\\R\\HW 4\\Data\\BST464Times.csv", sep=",", header=TRUE, skip = 1, stringsAsFactors = FALSE) #16 obs
+d494 <- read.csv("C:\\Users\\Charles C. Lee\\Desktop\\Graduate Programs\\Masters in Medical Statistics\\Program\\Fall 2016\\BST 494\\Homework\\R\\HW 4\\Data\\BST494Times.csv", sep=",", header=TRUE, skip = 1, stringsAsFactors = FALSE) #16 obs 
+
+## Getting Rid of Data points that are missing & converting to dataframe
+
+d411 <- as.data.frame(d411[-c(1, 10, 12, 15),]) # 12 obs
+d464 <- as.data.frame(d464[-c(10, 12, 15),]) # 13 obs
+d494 <- as.data.frame(d494[-c(2, 9, 14),]) # 13 obs
+
+## Preliminary Descriptive Statistics & Plots - 411
+
+d411$Time.of.Arrival <- as.numeric(d411$Time.of.Arrival)
+d411$Time.of.Departure <- as.numeric(d411$Time.of.Departure)
+
+d464$Time.of.Arrival <- as.numeric(d464$Time.of.Arrival)
+d464$Time.of.Departure <- as.numeric(d464$Time.of.Departure)
+
+d494$Time.of.Arrival <- as.numeric(d494$Time.of.Arrival)
+d494$Time.of.Departure <- as.numeric(d494$Time.of.Departure)
+
+```
+**BST 411**
+ 
+Average Time of Arrival = `r mean(d411$Time.of.Arrival)`. | Average Time of Departure = `r mean(d411$Time.of.Departure)`.
+    
+Median Time of Arrival = `r median(d411$Time.of.Arrival)`. | Median Time of Departure = `r median(d411$Time.of.Departure)`.
+    
+Standard Deviation Time of Arrival = `r sd(d411$Time.of.Arrival)`. | Standard Deviation Time of Departure = `r sd(d411$Time.of.Departure)`. 
+
+**BST 464**
+ 
+Average Time of Arrival = `r mean(d464$Time.of.Arrival)`. | Average Time of Departure = `r mean(d464$Time.of.Departure)`.
+    
+Median Time of Arrival = `r median(d464$Time.of.Arrival)`. | Median Time of Departure = `r median(d464$Time.of.Departure)`.
+    
+Standard Deviation Time of Arrival = `r sd(d464$Time.of.Arrival)`. | Standard Deviation Time of Departure = `r sd(d464$Time.of.Departure)`. 
+
+**BST 494**
+ 
+Average Time of Arrival = `r mean(d494$Time.of.Arrival)`. | Average Time of Departure = `r mean(d494$Time.of.Departure)`.
+    
+Median Time of Arrival = `r median(d494$Time.of.Arrival)`. | Median Time of Departure = `r median(d494$Time.of.Departure)`.
+    
+Standard Deviation Time of Arrival = `r sd(d494$Time.of.Arrival)`. | Standard Deviation Time of Departure = `r sd(d494$Time.of.Departure)`. 
+
+## Box Plots
+
+```{r, echo=FALSE}
+
+par(mfrow=c(1,2), oma=c(0,0,2,0))
+boxplot(d411$Time.of.Arrival, main='Time of Arrival', ylab='Time')
+boxplot(d411$Time.of.Departure,  main='Time of Departure', ylab='Time')
+title('BST 411', outer=TRUE)
+
+par(mfrow=c(1,2), oma=c(0,0,2,0))
+boxplot(d464$Time.of.Arrival, main='Time of Arrival', ylab='Time')
+boxplot(d464$Time.of.Departure,  main='Time of Departure', ylab='Time')
+title('BST 464', outer=TRUE)
+
+par(mfrow=c(1,2), oma=c(0,0,2,0))
+boxplot(d494$Time.of.Arrival, main='Time of Arrival', ylab='Time')
+boxplot(d494$Time.of.Departure,  main='Time of Departure', ylab='Time')
+title('BST 494', outer=TRUE)
+
+```
+
+
