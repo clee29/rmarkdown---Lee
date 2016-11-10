@@ -89,18 +89,18 @@ Standard Deviation Time of Arrival = `r sd(d494$Time.of.Arrival)`. | Standard De
 ```{r, echo=FALSE}
 
 par(mfrow=c(1,2), oma=c(0,0,2,0))
-boxplot(d411$Time.of.Arrival, main='Time of Arrival', ylab='Time')
-boxplot(d411$Time.of.Departure,  main='Time of Departure', ylab='Time')
+boxplot(d411$Time.of.Arrival, main='Time of Arrival', ylab='Time', col=4)
+boxplot(d411$Time.of.Departure,  main='Time of Departure', ylab='Time', col=2)
 title('BST 411', outer=TRUE)
 
 par(mfrow=c(1,2), oma=c(0,0,2,0))
-boxplot(d464$Time.of.Arrival, main='Time of Arrival', ylab='Time')
-boxplot(d464$Time.of.Departure,  main='Time of Departure', ylab='Time')
+boxplot(d464$Time.of.Arrival, main='Time of Arrival', ylab='Time', col=4)
+boxplot(d464$Time.of.Departure,  main='Time of Departure', ylab='Time', col=2)
 title('BST 464', outer=TRUE)
 
 par(mfrow=c(1,2), oma=c(0,0,2,0))
-boxplot(d494$Time.of.Arrival, main='Time of Arrival', ylab='Time')
-boxplot(d494$Time.of.Departure,  main='Time of Departure', ylab='Time')
+boxplot(d494$Time.of.Arrival, main='Time of Arrival', ylab='Time', col=4)
+boxplot(d494$Time.of.Departure,  main='Time of Departure', ylab='Time', col=2)
 title('BST 494', outer=TRUE)
 
 ```
